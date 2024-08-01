@@ -1,13 +1,13 @@
 ---
-title: 'AACHENER 101 : Welcoming Party'
-description: 'Lorem ipsum dolor sit amet'
-status: 'published'
-pubDate: 'Oct 9 2023'
-heroImage: '/events/2023/ersti-party.png'
+title: "AACHENER 101 : Welcoming Party"
+description: "Lorem ipsum dolor sit amet"
+status: "published"
+pubDate: "Oct 9 2023"
+heroImage: "/events/2023/ersti-party.png"
 ---
 
 Heyyo! 🙌🏻  
-Kabar gembira nih untuk Ertis di Aachen karena sebentar lagi akan diadakan acara “AACHENER 101 : WELCOMING PARTY”  
+Kabar gembira nih untuk Ertis di Aachen karena sebentar lagi akan diadakan acara “AACHENER 101 : WELCOMING PARTY”
 
 Tempat : Humboldt-Haus,Pontstr 41 52062 Aachen  
 Tanggal : 21 Oktober 2023  

@@ -24,7 +24,7 @@ import { links, hasChildren } from "@/lib/nav-links";
         {
           links.map((link) =>
             !hasChildren(link) ? (
-              <li class="mx-4 flex items-center gap-2 p-4 tracking-widest text-accent transition-colors duration-300 hover:text-link/60">
+              <li class="hover:text-link/60 mx-4 flex items-center gap-2 p-4 tracking-widest text-accent transition-colors duration-300">
                 <a href={link.href}>{link.text}</a>
               </li>
             ) : null,
@@ -32,7 +32,9 @@ import { links, hasChildren } from "@/lib/nav-links";
         }
       </ul>
     </div>
-    <div class="flex flex-row text-accent text-xs font-light tracking-wide px-10 py-4">
+    <div
+      class="flex flex-row px-10 py-4 text-xs font-light tracking-wide text-accent"
+    >
       Copyright © 2022. Perhimpunan Pelajar Indonesia Aachen.
     </div>
   </div>

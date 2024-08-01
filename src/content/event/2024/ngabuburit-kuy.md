@@ -1,22 +1,22 @@
 ---
-title: 'Ngabuburit Kuy'
-description: 'Lorem ipsum dolor sit amet'
-status: 'published'
-pubDate: 'April 7 2024'
-heroImage: '/events/2024/ngabuburit-kuy.png'
+title: "Ngabuburit Kuy"
+description: "Lorem ipsum dolor sit amet"
+status: "published"
+pubDate: "April 7 2024"
+heroImage: "/events/2024/ngabuburit-kuy.png"
 ---
 
 “Dug dug dug dug” 🥁🥁🥁
 
 Satu dua buah mangga, Jalan-jalan sore hari;  
 Sambil menunggu waktu berbuka,  
-Yuk ngabuburit asyik, bareng ppi. 👋  
+Yuk ngabuburit asyik, bareng ppi. 👋
 
 Dalam rangka memeriahkan bulan ramadhan, PPI Aachen mengundang kalian untuk ngabuburit dan berbuka bersama pada:
 
 📍Tempat : Humboldt-Haus, Pontstraße 41, 52062 Aachen  
 📆 Tanggal : 07.04.2024  
-🕑 Waktu : 17:00-Selesai  
+🕑 Waktu : 17:00-Selesai
 
 Ayo! jangan lupa daftar di :  
 bit.ly/ngabuburitac2024

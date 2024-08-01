@@ -1,9 +1,9 @@
 ---
-title: 'Halloween Party KMKI x PPI Aachen'
-description: 'Lorem ipsum dolor sit amet'
-status: 'published'
-pubDate: 'Nov 6 2022'
-heroImage: '/events/2022/halloween-x-kmki.jpeg'
+title: "Halloween Party KMKI x PPI Aachen"
+description: "Lorem ipsum dolor sit amet"
+status: "published"
+pubDate: "Nov 6 2022"
+heroImage: "/events/2022/halloween-x-kmki.jpeg"
 ---
 
 🎃Knock! Knock! Who’s there?🎃
@@ -18,7 +18,7 @@ Kami menunggu kamu pada :
 ⏰ Minggu, 6 November 2022  
 📍Humboldt Haus, Aachen
 
-*Tiket ersti berlaku untuk seluruh Ersti Student & Ersti Azubi di Jerman serta Siswa/Siswi Studienkolleg
+\*Tiket ersti berlaku untuk seluruh Ersti Student & Ersti Azubi di Jerman serta Siswa/Siswi Studienkolleg
 
 PERHATIAN‼️ untuk Ersti & Studienkolleg:  
 Saat registrasi di hari pelaksanaan acara harap menunjukkan Bescheinigung als Ersti/ Studienkolleg (in Digitalform/ Papierform)

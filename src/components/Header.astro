@@ -6,8 +6,8 @@ import { links, hasChildren } from "@/lib/nav-links";
 const { pathname } = Astro.url;
 const isActive = (href: string) => {
   const subpath = pathname.match(/[^\/]+/g);
-  return href === pathname || href === '/' + subpath?.[0];
-}
+  return href === pathname || href === "/" + subpath?.[0];
+};
 ---
 
 <header>
@@ -29,7 +29,7 @@ const isActive = (href: string) => {
               <div
                 tabindex="0"
                 role="button"
-                class="mx-4 flex items-center gap-2 tracking-widest text-accent hover:text-accent/60 transition-colors duration-300"
+                class="mx-4 flex items-center gap-2 tracking-widest text-accent transition-colors duration-300 hover:text-accent/60"
               >
                 {link.text}
                 <svg
@@ -50,7 +50,7 @@ const isActive = (href: string) => {
               </div>
               <ul class="dropdown-content menu z-[1] w-44 pt-1 transition duration-300">
                 {link.children.map((child) => (
-                  <li class="mx-4 mt-2 text-base tracking-widest text-accent hover:text-accent/60 transition-colors duration-300">
+                  <li class="mx-4 mt-2 text-base tracking-widest text-accent transition-colors duration-300 hover:text-accent/60">
                     <a href={child.href}>{child.text}</a>
                   </li>
                 ))}
@@ -59,10 +59,8 @@ const isActive = (href: string) => {
           ) : (
             <li
               class:list={[
-                "mx-4 tracking-widest text-accent hover:text-accent/60 transition-colors duration-300",
-                isActive(link.href)
-                  ? "border-b-2 border-b-blue-700"
-                  : "",
+                "mx-4 tracking-widest text-accent transition-colors duration-300 hover:text-accent/60",
+                isActive(link.href) ? "border-b-2 border-b-blue-700" : "",
               ]}
             >
               <a href={link.href}>{link.text}</a>

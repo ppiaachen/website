@@ -1,9 +1,9 @@
 ---
-title: 'Aachen E-Sport'
-description: 'Lorem ipsum dolor sit amet'
-status: 'published'
-pubDate: 'Aug 20 2023'
-heroImage: '/events/2023/esport-aachen.png'
+title: "Aachen E-Sport"
+description: "Lorem ipsum dolor sit amet"
+status: "published"
+pubDate: "Aug 20 2023"
+heroImage: "/events/2023/esport-aachen.png"
 ---
 
 Hällochen,  
@@ -19,18 +19,23 @@ Prize? Maybe
 VALORANT akan DIUNDUR menjadi ⬇️⬇️⬇️
 
 Games 🎮:
+
 - Valorant (diundur)
 
 Waktu 🗓️ :
+
 - 15-17 September 2023
 
 Technical Meeting 📋:
+
 - 13 Agustus 2023
 
 Prize Pool 💰:
+
 - Juara 1 Valorant : 100 €
 
 Waktu Pendaftaran ⏱️:
+
 - 15-17 September 2023
 - 17 Agustus s.d. 11 September 2023
 

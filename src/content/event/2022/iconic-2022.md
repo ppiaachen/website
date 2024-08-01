@@ -1,9 +1,9 @@
 ---
-title: 'ICONIC 2022'
-description: 'Lorem ipsum dolor sit amet'
-status: 'published'
-pubDate: 'Jun 3 2022'
-heroImage: '/events/2022/iconic-2022.jpeg'
+title: "ICONIC 2022"
+description: "Lorem ipsum dolor sit amet"
+status: "published"
+pubDate: "Jun 3 2022"
+heroImage: "/events/2022/iconic-2022.jpeg"
 ---
 
 PPIJerman x PPIAachen proudly present:
@@ -18,6 +18,7 @@ RWTH Aachen University-Super C
 Templergraben 57, Aachen
 
 Topics:
+
 - Sustainable Infrastucture Developement
 - Precise and Efficient Technology
 - Economic, Social, Welfare

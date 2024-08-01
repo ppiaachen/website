@@ -14,7 +14,7 @@ const posts = (await getCollection("event"))
   <section class="flex flex-row flex-wrap justify-center gap-10 p-10">
     {
       posts.map((post) => (
-        <div class="relative post-square">
+        <div class="post-square relative">
           <a class="relative" href={`/event/${post.slug}/`}>
             <div class="relative h-[500px] w-[500px] overflow-hidden">
               <Image
@@ -59,6 +59,8 @@ const posts = (await getCollection("event"))
     opacity: 0;
     max-height: 0px;
     overflow: hidden;
-    transition: 1s ease-in-out opacity, 1s ease-in-out max-height;
+    transition:
+      1s ease-in-out opacity,
+      1s ease-in-out max-height;
   }
 </style>
