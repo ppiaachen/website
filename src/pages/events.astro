@@ -1,0 +1,64 @@
+---
+import { Image } from "astro:assets";
+import Layout from "@/layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import FormattedDate from "@/components/FormattedDate.astro";
+
+const posts = (await getCollection("event"))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .filter((post) => post.data.status === "published");
+---
+
+<Layout title="Events | PPI Aachen">
+  <h1 class="my-20 text-center text-7xl font-bold">Events</h1>
+  <section class="flex flex-row flex-wrap justify-center gap-10 p-10">
+    {
+      posts.map((post) => (
+        <div class="relative post-square">
+          <a class="relative" href={`/event/${post.slug}/`}>
+            <div class="relative h-[500px] w-[500px] overflow-hidden">
+              <Image
+                class="absolute left-1/2 top-1/2 h-auto w-full -translate-x-1/2 -translate-y-1/2"
+                loading="lazy"
+                width={526}
+                height={526}
+                src={post.data.heroImage}
+                alt=""
+              />
+              <div class="absolute right-3 top-3 bg-black/50 px-3 py-2 text-xs font-bold text-white">
+                <FormattedDate date={post.data.pubDate} />
+              </div>
+            </div>
+          </a>
+          <div class="post-overlay pointer-events-none absolute inset-x-0 bottom-0 z-10 p-10 pt-52">
+            <h4 class="mb-3 text-2xl font-light uppercase">
+              {post.data.title}
+            </h4>
+            <div class="post-description">
+              <p class="text-base font-light">{post.data.description}</p>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </section>
+</Layout>
+
+<style>
+  .post-overlay {
+    background-image: linear-gradient(
+      rgba(0, 0, 0, 0),
+      rgba(243, 238, 227, 1) 300px
+    );
+  }
+  .post-square:hover .post-description {
+    opacity: 1;
+    max-height: 400px;
+  }
+  .post-description {
+    opacity: 0;
+    max-height: 0px;
+    overflow: hidden;
+    transition: 1s ease-in-out opacity, 1s ease-in-out max-height;
+  }
+</style>
