@@ -11,17 +11,17 @@ const posts = (await getCollection("event"))
 
 <Layout title="Events | PPI Aachen">
   <h1 class="my-20 text-center text-7xl font-bold">Events</h1>
-  <section class="flex flex-row flex-wrap justify-center gap-10 p-10">
+  <section class="flex flex-row flex-wrap justify-center gap-10 p-4 md:p-10">
     {
       posts.map((post) => (
-        <div class="post-square relative">
-          <a class="relative" href={`/event/${post.slug}/`}>
-            <div class="relative h-[500px] w-[500px] overflow-hidden">
+        <div class="post-square relative w-full lg:w-auto">
+          <a class="relative w-full lg:w-auto" href={`/event/${post.slug}/`}>
+            <div class="relative h-[500px] w-full overflow-hidden lg:w-[500px]">
               <Image
                 class="absolute left-1/2 top-1/2 h-auto w-full -translate-x-1/2 -translate-y-1/2"
                 loading="lazy"
-                width={526}
-                height={526}
+                width={500}
+                height={500}
                 src={post.data.heroImage}
                 alt=""
               />

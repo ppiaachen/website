@@ -11,16 +11,16 @@ const isActive = (href: string) => {
 ---
 
 <header>
-  <nav class="mx-auto flex max-w-7xl items-center justify-between px-10 py-2">
-    <div>
-      <Image
-        loading="eager"
-        width={70}
-        height={70}
-        src={logo}
-        alt="Logo PPI Aachen."
-      />
-    </div>
+  <nav
+    class="mx-auto flex max-w-7xl flex-col items-center justify-between px-10 py-2 md:flex-row"
+  >
+    <Image
+      loading="eager"
+      width={70}
+      height={70}
+      src={logo}
+      alt="Logo PPI Aachen."
+    />
     <ul class="flex flex-row items-center">
       {
         links.map((link) =>
@@ -29,7 +29,7 @@ const isActive = (href: string) => {
               <div
                 tabindex="0"
                 role="button"
-                class="mx-4 flex items-center gap-2 tracking-widest text-accent transition-colors duration-300 hover:text-accent/60"
+                class="mx-2 flex items-center text-sm tracking-widest text-accent transition-colors duration-300 hover:text-accent/60 md:mx-4 md:text-base"
               >
                 {link.text}
                 <svg
@@ -50,7 +50,7 @@ const isActive = (href: string) => {
               </div>
               <ul class="dropdown-content menu z-[1] w-44 pt-1 transition duration-300">
                 {link.children.map((child) => (
-                  <li class="mx-4 mt-2 text-base tracking-widest text-accent transition-colors duration-300 hover:text-accent/60">
+                  <li class="mx-2 text-sm tracking-widest text-accent transition-colors duration-300 hover:text-accent/60 md:mx-4 md:text-base">
                     <a href={child.href}>{child.text}</a>
                   </li>
                 ))}
@@ -59,13 +59,13 @@ const isActive = (href: string) => {
           ) : (
             <li
               class:list={[
-                "mx-4 tracking-widest text-accent transition-colors duration-300 hover:text-accent/60",
+                "mx-2 text-sm tracking-widest text-accent transition-colors duration-300 hover:text-accent/60 md:mx-4 md:text-base",
                 isActive(link.href) ? "border-b-2 border-b-blue-700" : "",
               ]}
             >
               <a href={link.href}>{link.text}</a>
             </li>
-          ),
+          )
         )
       }
     </ul>
