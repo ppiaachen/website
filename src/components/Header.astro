@@ -1,7 +1,9 @@
 ---
 import { Image } from "astro:assets";
+import MobileMenu from "./MobileMenu.astro";
 import logo from "../assets/logo-ppiaachen.png";
 import { links, hasChildren } from "@/lib/nav-links";
+import createSlug from "@/lib/create-slug";
 
 const { pathname } = Astro.url;
 const isActive = (href: string) => {
@@ -12,7 +14,7 @@ const isActive = (href: string) => {
 
 <header>
   <nav
-    class="mx-auto flex max-w-7xl flex-col items-center justify-between px-10 py-2 md:flex-row"
+    class="mx-auto flex max-w-screen-xl flex-row items-center justify-between px-10 py-2"
   >
     <Image
       loading="eager"
@@ -21,14 +23,16 @@ const isActive = (href: string) => {
       src={logo}
       alt="Logo PPI Aachen."
     />
-    <ul class="flex flex-row items-center">
+
+    <MobileMenu />
+
+    <ul class="hidden lg:flex lg:flex-wrap lg:items-center">
       {
         links.map((link) =>
           hasChildren(link) ? (
-            <div class="dropdown dropdown-hover">
-              <div
-                tabindex="0"
-                role="button"
+            <li>
+              <button
+                id={`show-h-dropdown-${createSlug(link.text)}`}
                 class="mx-2 flex items-center text-sm tracking-widest text-accent transition-colors duration-300 hover:text-accent/60 md:mx-4 md:text-base"
               >
                 {link.text}
@@ -47,15 +51,28 @@ const isActive = (href: string) => {
                     d="m6 9l6 6l6-6"
                   />
                 </svg>
+              </button>
+              <div
+                id={`h-dropdown-${createSlug(link.text)}`}
+                class="z-10 hidden w-44 divide-y divide-gray-100 rounded-lg bg-white font-normal shadow"
+              >
+                <ul
+                  class="text-gray py-2 text-sm"
+                  aria-labelledby="dropdown-lists"
+                >
+                  {link.children.map((child) => (
+                    <li>
+                      <a
+                        href={child.href}
+                        class="mx-2 block px-4 py-2 text-sm tracking-widest text-accent transition-colors duration-300 hover:text-accent/60 md:mx-4 md:text-base"
+                      >
+                        {child.text}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <ul class="dropdown-content menu z-[1] w-44 pt-1 transition duration-300">
-                {link.children.map((child) => (
-                  <li class="mx-2 text-sm tracking-widest text-accent transition-colors duration-300 hover:text-accent/60 md:mx-4 md:text-base">
-                    <a href={child.href}>{child.text}</a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            </li>
           ) : (
             <li
               class:list={[
@@ -71,3 +88,27 @@ const isActive = (href: string) => {
     </ul>
   </nav>
 </header>
+
+<script>
+  import { Dropdown } from "flowbite";
+  document.addEventListener("astro:page-load", () => {
+    const $triggerEls = document.querySelectorAll('[id^="show-h-dropdown-"]');
+
+    $triggerEls.forEach(($triggerEl) => {
+      const targetId = $triggerEl.id.replace("show-", "");
+      if (!targetId) return;
+      const $targetEl = document.getElementById(targetId);
+      const instanceOptions = {
+        id: targetId,
+        override: true,
+      };
+
+      new Dropdown(
+        $targetEl,
+        $triggerEl as HTMLElement,
+        undefined,
+        instanceOptions
+      );
+    });
+  });
+</script>

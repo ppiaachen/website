@@ -2,7 +2,24 @@ import defaultTheme from "tailwindcss/defaultTheme";
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./src/**/*.{astro,html}"],
+  content: [
+    "./src/**/*.{astro,html,svelte}",
+    "./node_modules/flowbite/**/*.js",
+  ],
+  safelist: [
+    "w-64",
+    "w-1/2",
+    "rounded-l-lg",
+    "rounded-r-lg",
+    "bg-gray-200",
+    "grid-cols-4",
+    "grid-cols-7",
+    "h-6",
+    "leading-6",
+    "h-9",
+    "leading-9",
+    "shadow-lg",
+  ],
   theme: {
     extend: {
       fontFamily: {
@@ -13,12 +30,5 @@ export default {
       },
     },
   },
-  plugins: [require("@tailwindcss/typography"), require("daisyui")],
-  daisyui: {
-    themes: [],
-    base: false,
-    styled: false,
-    utils: false,
-    logs: false,
-  },
+  plugins: [require("@tailwindcss/typography"), require("flowbite/plugin")],
 };

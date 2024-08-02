@@ -1,0 +1,167 @@
+---
+import { links, hasChildren } from "@/lib/nav-links";
+import createSlug from "@/lib/create-slug";
+---
+
+<button
+  id="show-mobile-menu"
+  class="rounded-lg px-5 py-2.5 text-center text-sm font-medium text-zinc-600 focus:outline-none focus:ring-4 focus:ring-blue-300 lg:hidden"
+  type="button"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    viewBox="0 0 24 24"
+    ><path
+      fill="none"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M3 6h18M3 12h18M3 18h18"></path></svg
+  >
+</button>
+
+<div
+  id="mobile-menu"
+  class="fixed right-0 top-0 z-40 h-screen w-80 translate-x-full overflow-y-auto bg-white p-4 transition-transform lg:hidden"
+  tabindex="-1"
+  aria-labelledby="mobile-menu-label"
+  aria-controls="mobile-menu"
+>
+  <h5
+    id="mobile-menu-label"
+    class="text-base font-semibold uppercase text-gray-500"
+  >
+    Menu
+  </h5>
+  <button
+    id="hide-mobile-menu"
+    type="button"
+    aria-controls="mobile-menu"
+    class="absolute end-2.5 top-2.5 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900"
+  >
+    <svg
+      class="h-3 w-3"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 14 14"
+    >
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"></path>
+    </svg>
+    <span class="sr-only">Close menu</span>
+  </button>
+  <div class="overflow-y-auto py-4">
+    <ul class="space-y-2 font-medium">
+      {
+        links.map((link) =>
+          hasChildren(link) ? (
+            <li>
+              <button
+                id=`show-s-collapse-${createSlug(link.text)}`
+                type="button"
+                aria-expanded="false" 
+                class="group flex w-full items-center rounded-lg p-2 text-base text-gray-900 transition duration-75 hover:bg-gray-100"
+              >
+                <span class="ms-3 flex-1 whitespace-nowrap text-left rtl:text-right">
+                  {link.text}
+                </span>
+                <svg
+                  class="h-3 w-3"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 10 6"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m1 1 4 4 4-4"
+                  />
+                </svg>
+              </button>
+              <ul
+                id={`s-collapse-${createSlug(link.text)}`}
+                class="hidden space-y-2 py-2"
+              >
+                {link.children.map((child) => (
+                  <li>
+                    <a
+                      href={child.href}
+                      class="group flex w-full items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100"
+                    >
+                      {child.text}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ) : (
+            <li>
+              <a
+                href={link.href}
+                class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100"
+              >
+                <span class="ms-3">{link.text}</span>
+              </a>
+            </li>
+          )
+        )
+      }
+    </ul>
+  </div>
+</div>
+
+<script>
+  import { Collapse, Drawer } from "flowbite";
+  document.addEventListener("astro:page-load", () => {
+    const $drawerEl = document.getElementById("mobile-menu");
+    const $triggerEl = document.getElementById("show-mobile-menu");
+    const $hideEl = document.getElementById("hide-mobile-menu");
+
+    const options = {
+      placement: "right",
+      backdropClasses:
+        "bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-30 lg:hidden",
+    };
+    const instanceOptions = {
+      id: "mobile-menu",
+      override: true,
+    };
+
+    const drawer = new Drawer($drawerEl, options, instanceOptions);
+    if ($triggerEl) {
+      $triggerEl.addEventListener("click", () => drawer.toggle());
+    }
+    if ($hideEl) {
+      $hideEl.addEventListener("click", () => drawer.hide());
+    }
+
+    // Dropdown submenus
+    const $colTriggerEls = document.querySelectorAll('[id^="show-s-collapse-"]');
+    $colTriggerEls.forEach(($triggerEl) => {
+      const targetId = $triggerEl.id.replace("show-", "");
+      if (!targetId) return;
+      const $targetEl = document.getElementById(targetId);
+      const instanceOptions = {
+        id: targetId,
+        override: true,
+      };
+      new Collapse(
+        $targetEl,
+        $triggerEl as HTMLElement,
+        undefined,
+        instanceOptions
+      );
+    });
+  });
+</script>
