@@ -18,8 +18,8 @@ const isActive = (href: string) => {
   >
     <Image
       loading="eager"
-      width={70}
-      height={70}
+      width={105}
+      height={105}
       src={logo}
       alt="Logo PPI Aachen."
     />
@@ -90,7 +90,7 @@ const isActive = (href: string) => {
 </header>
 
 <script>
-  import { Dropdown } from "flowbite";
+  import Dropdown from "flowbite/lib/esm/components/dropdown";
   document.addEventListener("astro:page-load", () => {
     const $triggerEls = document.querySelectorAll('[id^="show-h-dropdown-"]');
 

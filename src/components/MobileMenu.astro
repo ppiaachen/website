@@ -7,6 +7,8 @@ import createSlug from "@/lib/create-slug";
   id="show-mobile-menu"
   class="rounded-lg px-5 py-2.5 text-center text-sm font-medium text-zinc-600 focus:outline-none focus:ring-4 focus:ring-blue-300 lg:hidden"
   type="button"
+  aria-label="Show mobile menu"
+  aria-controls="mobile-menu"
 >
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +30,6 @@ import createSlug from "@/lib/create-slug";
   class="fixed right-0 top-0 z-40 h-screen w-80 translate-x-full overflow-y-auto bg-white p-4 transition-transform lg:hidden"
   tabindex="-1"
   aria-labelledby="mobile-menu-label"
-  aria-controls="mobile-menu"
 >
   <h5
     id="mobile-menu-label"
@@ -122,7 +123,9 @@ import createSlug from "@/lib/create-slug";
 </div>
 
 <script>
-  import { Collapse, Drawer } from "flowbite";
+  import Collapse from "flowbite/lib/esm/components/collapse"
+  import Drawer from "flowbite/lib/esm/components/drawer"
+  
   document.addEventListener("astro:page-load", () => {
     const $drawerEl = document.getElementById("mobile-menu");
     const $triggerEl = document.getElementById("show-mobile-menu");
