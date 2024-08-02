@@ -4,9 +4,9 @@ import Layout from "@/layouts/Layout.astro";
 import { getCollection } from "astro:content";
 import FormattedDate from "@/components/FormattedDate.astro";
 
-const posts = (await getCollection("event"))
+const events = (await getCollection("events"))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .filter((post) => post.data.status === "published");
+  .filter((event) => event.data.status === "published");
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/**/*.{jpeg,jpg,png}"
@@ -27,28 +27,28 @@ const loadImage = (path: string) => {
   <h1 class="my-20 text-center text-7xl font-bold">Events</h1>
   <section class="flex flex-row flex-wrap justify-center">
     {
-      posts.map((post) => (
+      events.map((event) => (
         <div class="w-full md:w-1/2">
-          <div class="post-square relative m-4">
-            <a href={`/event/${post.slug}/`}>
+          <div class="event-square">
+            <a href={`/events/${event.slug}/`}>
               <div class="relative overflow-hidden before:block before:w-full before:pt-[100%]">
                 <Image
                   class="absolute inset-0 h-auto w-full"
                   loading="lazy"
                   width={600}
-                  src={loadImage(post.data.heroImage)}
+                  src={loadImage(event.data.heroImage)}
                   alt=""
                 />
               </div>
               <div class="absolute right-3 top-3 bg-black/50 px-3 py-2 text-xs font-bold text-white">
-                <FormattedDate date={post.data.pubDate} />
+                <FormattedDate date={event.data.pubDate} />
               </div>
-              <div class="post-overlay pointer-events-none absolute inset-x-0 bottom-0 z-10 p-10 pt-52">
+              <div class="event-overlay">
                 <h2 class="mb-3 text-2xl font-light uppercase">
-                  {post.data.title}
+                  {event.data.title}
                 </h2>
-                <div class="post-description">
-                  <p class="text-base font-light">{post.data.description}</p>
+                <div class="event-description">
+                  <p class="text-base font-light">{event.data.description}</p>
                 </div>
               </div>
             </a>
@@ -60,20 +60,21 @@ const loadImage = (path: string) => {
 </Layout>
 
 <style>
-  .post-overlay {
+  .event-square {
+    @apply relative m-4;
+  }
+  .event-overlay {
+    @apply pointer-events-none absolute inset-x-0 bottom-0 z-10 p-10 pt-52;
     background-image: linear-gradient(
       rgba(0, 0, 0, 0),
       rgba(243, 238, 227, 1) 300px
     );
   }
-  .post-square:hover .post-description {
-    opacity: 1;
-    max-height: 400px;
+  .event-square:hover .event-description {
+    @apply max-h-[400px] opacity-100;
   }
-  .post-description {
-    opacity: 0;
-    max-height: 0px;
-    overflow: hidden;
+  .event-description {
+    @apply max-h-0 overflow-hidden opacity-0;
     transition:
       1s ease-in-out opacity,
       1s ease-in-out max-height;

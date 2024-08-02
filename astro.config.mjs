@@ -8,4 +8,7 @@ const { SITE_URL } = loadEnv(process.env.NODE_ENV, process.cwd(), "");
 export default defineConfig({
   site: SITE_URL,
   integrations: [tailwind()],
+  build: {
+    assets: "_assets",
+  },
 });
