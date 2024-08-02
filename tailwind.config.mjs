@@ -2,10 +2,7 @@ import defaultTheme from "tailwindcss/defaultTheme";
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./src/**/*.{astro,html,svelte}",
-    "./node_modules/flowbite/**/*.js",
-  ],
+  content: ["./src/**/*.{astro,html}", "./node_modules/flowbite/**/*.js"],
   safelist: [
     "w-64",
     "w-1/2",
