@@ -3,7 +3,7 @@ title: "Halloween Party KMKI x PPI Aachen"
 description: "Lorem ipsum dolor sit amet"
 status: "published"
 pubDate: "Nov 6 2022"
-heroImage: "/events/2022/halloween-x-kmki.jpeg"
+heroImage: "/src/assets/events/2022/halloween-x-kmki.jpeg"
 ---
 
 🎃Knock! Knock! Who’s there?🎃

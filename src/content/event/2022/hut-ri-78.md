@@ -3,7 +3,7 @@ title: "Perayaan Kemerdekaan Indonesia ke- 78"
 description: "Lorem ipsum dolor sit amet"
 status: "published"
 pubDate: "Aug 17 2023"
-heroImage: "/events/2023/hut-ri-78.png"
+heroImage: "/src/assets/events/2023/hut-ri-78.png"
 ---
 
 Hallo Hallo semuanyaa!🙋🏻‍♀️  

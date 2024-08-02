@@ -7,35 +7,49 @@ import FormattedDate from "@/components/FormattedDate.astro";
 const posts = (await getCollection("event"))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .filter((post) => post.data.status === "published");
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/**/*.{jpeg,jpg,png}"
+);
+
+const loadImage = (path: string) => {
+  if (!images[path])
+    throw new Error(
+      `"${path}" does not exist in glob: "src/assets/*.{jpeg,jpg,png} ${Object.keys(
+        images
+      )}"`
+    );
+  return images[path]();
+};
 ---
 
 <Layout title="Events | PPI Aachen">
   <h1 class="my-20 text-center text-7xl font-bold">Events</h1>
-  <section class="flex flex-row flex-wrap justify-center gap-10 p-4 md:p-10">
+  <section class="flex flex-row flex-wrap justify-center">
     {
       posts.map((post) => (
-        <div class="post-square relative w-full lg:w-auto">
-          <a class="relative w-full lg:w-auto" href={`/event/${post.slug}/`}>
-            <div class="relative h-[500px] w-full overflow-hidden lg:w-[500px]">
-              <Image
-                class="absolute left-1/2 top-1/2 h-auto w-full -translate-x-1/2 -translate-y-1/2"
-                loading="lazy"
-                width={500}
-                height={500}
-                src={post.data.heroImage}
-                alt=""
-              />
-              <div class="absolute right-3 top-3 bg-black/50 px-3 py-2 text-xs font-bold text-white">
-                <FormattedDate date={post.data.pubDate} />
+        <div class="w-full md:w-1/2">
+          <div class="post-square relative m-4">
+            <a class="relative" href={`/event/${post.slug}/`}>
+              <div class="overflow-hidden">
+                <Image
+                  class="h-auto w-full object-cover object-center"
+                  loading="lazy"
+                  src={loadImage(post.data.heroImage)}
+                  alt=""
+                />
+                <div class="absolute right-3 top-3 bg-black/50 px-3 py-2 text-xs font-bold text-white">
+                  <FormattedDate date={post.data.pubDate} />
+                </div>
               </div>
-            </div>
-          </a>
-          <div class="post-overlay pointer-events-none absolute inset-x-0 bottom-0 z-10 p-10 pt-52">
-            <h4 class="mb-3 text-2xl font-light uppercase">
-              {post.data.title}
-            </h4>
-            <div class="post-description">
-              <p class="text-base font-light">{post.data.description}</p>
+            </a>
+            <div class="post-overlay pointer-events-none absolute inset-x-0 bottom-0 z-10 p-10 pt-52">
+              <h4 class="mb-3 text-2xl font-light uppercase">
+                {post.data.title}
+              </h4>
+              <div class="post-description">
+                <p class="text-base font-light">{post.data.description}</p>
+              </div>
             </div>
           </div>
         </div>

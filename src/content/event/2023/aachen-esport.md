@@ -3,7 +3,7 @@ title: "Aachen E-Sport"
 description: "Lorem ipsum dolor sit amet"
 status: "published"
 pubDate: "Aug 20 2023"
-heroImage: "/events/2023/esport-aachen.png"
+heroImage: "/src/assets/events/2023/esport-aachen.png"
 ---
 
 Hällochen,  

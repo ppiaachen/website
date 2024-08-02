@@ -3,7 +3,7 @@ title: "Ngabuburit Kuy"
 description: "Lorem ipsum dolor sit amet"
 status: "published"
 pubDate: "April 7 2024"
-heroImage: "/events/2024/ngabuburit-kuy.png"
+heroImage: "/src/assets/events/2024/ngabuburit-kuy.png"
 ---
 
 “Dug dug dug dug” 🥁🥁🥁

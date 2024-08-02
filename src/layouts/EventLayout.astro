@@ -9,6 +9,20 @@ import FormattedDate from "@/components/FormattedDate.astro";
 type Props = CollectionEntry<"event">["data"];
 
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/**/*.{jpeg,jpg,png}"
+);
+
+const loadImage = (path: string) => {
+  if (!images[path])
+    throw new Error(
+      `"${path}" does not exist in glob: "src/assets/*.{jpeg,jpg,png} ${Object.keys(
+        images
+      )}"`
+    );
+  return images[path]();
+};
 ---
 
 <html lang="en">
@@ -18,25 +32,23 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 
   <body>
     <Header />
-    <main class="mx-auto min-h-[80vh] max-w-7xl">
-      <article>
-        <div class="m-auto w-1/3">
+    <main class="mx-auto min-h-[80vh] max-w-screen-xl">
+      <article class="prose mx-auto lg:prose-xl">
+        <div class="mx-auto w-1/3">
           {
             heroImage && (
               <Image
                 class="rounded-lg"
                 loading="eager"
-                width={1020}
-                height={510}
-                src={heroImage}
+                src={loadImage(heroImage)}
                 alt=""
               />
             )
           }
         </div>
-        <div class="mx-4 mt-10 w-3/4 md:mx-auto">
+        <div class="mx-auto mt-10 w-3/4">
           <div class="mb-10 text-center uppercase">
-            <h1 class="text-sm">{title}</h1>
+            <h1>{title}</h1>
             <div class="date">
               <FormattedDate date={pubDate} />
               {
@@ -49,9 +61,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
             </div>
             <hr />
           </div>
-          <div class="prose lg:prose-xl">
-            <slot />
-          </div>
+          <slot />
         </div>
       </article>
     </main>

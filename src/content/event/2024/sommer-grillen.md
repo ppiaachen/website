@@ -3,7 +3,7 @@ title: "Sommer Grillen PPI Aachen x KMKI"
 description: "Lorem ipsum dolor sit amet"
 status: "published"
 pubDate: "May 29 2024"
-heroImage: "/events/2024/sommer-grill.jpg"
+heroImage: "/src/assets/events/2024/sommer-grill.jpg"
 ---
 
 Hallo Aachener 👋  

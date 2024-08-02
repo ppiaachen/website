@@ -3,7 +3,7 @@ title: "AACHENER 101 : Welcoming Party"
 description: "Lorem ipsum dolor sit amet"
 status: "published"
 pubDate: "Oct 9 2023"
-heroImage: "/events/2023/ersti-party.png"
+heroImage: "/src/assets/events/2023/ersti-party.png"
 ---
 
 Heyyo! 🙌🏻  

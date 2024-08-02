@@ -4,7 +4,7 @@ title: 'Tips and Tricks Stellenbewerbung
 description: 'Lorem ipsum dolor sit amet'
 status: 'published'
 pubDate: 'Mar 27 2022'
-heroImage: '/events/2022/stellenbewerbung.jpeg'
+heroImage: '/src/assets/events/2022/stellenbewerbung.jpeg'
 ---
 
 Sedang mencari tempat untuk Werkstudent dan Praktikum? 🤔  
