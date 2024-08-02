@@ -28,5 +28,5 @@ export const links: NavLinks = [
       { href: "/ad-art", text: "AD ART" },
     ],
   },
-  { href: "/lapor-diri", text: "Lapor Diri" },
+  { href: "https://link.aachen.ppi.id/lapor-diri", text: "Lapor Diri" },
 ];
