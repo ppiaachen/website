@@ -16,13 +16,15 @@ const isActive = (href: string) => {
   <nav
     class="mx-auto flex max-w-screen-xl flex-row items-center justify-between px-10 py-2"
   >
-    <Image
-      loading="eager"
-      width={105}
-      height={105}
-      src={logo}
-      alt="Logo PPI Aachen."
-    />
+    <a href="/" aria-label="PPI Aachen homepage">
+      <Image
+        loading="eager"
+        width={105}
+        height={105}
+        src={logo}
+        alt="Logo PPI Aachen."
+      />
+    </a>
 
     <MobileMenu />
 

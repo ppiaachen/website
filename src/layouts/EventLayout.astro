@@ -29,11 +29,10 @@ const loadImage = (path: string) => {
   <head>
     <BaseHead title={title} description={description} />
   </head>
-
-  <body>
+  <body class="font-sans antialiased">
     <Header />
     <main class="mx-auto min-h-[80vh] max-w-screen-xl">
-      <article class="prose mx-auto lg:prose-xl">
+      <article class="prose prose-stone mx-auto lg:prose-xl">
         <div class="mx-auto w-1/3">
           {
             heroImage && (
@@ -48,7 +47,7 @@ const loadImage = (path: string) => {
         </div>
         <div class="mx-auto mt-10 w-3/4">
           <div class="mb-10 text-center uppercase">
-            <h1>{title}</h1>
+            <h1 class="prose-base md:prose-xl">{title}</h1>
             <div class="date">
               <FormattedDate date={pubDate} />
               {

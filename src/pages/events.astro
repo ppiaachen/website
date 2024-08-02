@@ -28,20 +28,20 @@ const loadImage = (path: string) => {
   <section class="flex flex-row flex-wrap justify-center">
     {
       posts.map((post) => (
-        <div class="w-full md:w-1/2">
+        <div class="w-full lg:w-1/2">
           <div class="post-square relative m-4">
             <a class="relative" href={`/event/${post.slug}/`}>
-              <div class="overflow-hidden">
+              <div class="relative overflow-hidden before:block before:w-full before:pt-[100%]">
                 <Image
-                  class="h-auto w-full object-cover object-center"
+                  class="absolute inset-0 h-auto w-full"
                   loading="lazy"
                   width={600}
                   src={loadImage(post.data.heroImage)}
                   alt=""
                 />
-                <div class="absolute right-3 top-3 bg-black/50 px-3 py-2 text-xs font-bold text-white">
-                  <FormattedDate date={post.data.pubDate} />
-                </div>
+              </div>
+              <div class="absolute right-3 top-3 bg-black/50 px-3 py-2 text-xs font-bold text-white">
+                <FormattedDate date={post.data.pubDate} />
               </div>
             </a>
             <div class="post-overlay pointer-events-none absolute inset-x-0 bottom-0 z-10 p-10 pt-52">
