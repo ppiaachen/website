@@ -18,7 +18,7 @@ const mobileMenuId = "mobile-menu";
   data-drawer-show={mobileMenuId}
   data-drawer-placement="right"
 >
-  <Icon name="ph:list" class="size-8" />
+  <Icon name="ph:list" class="size-8" aria-hidden="true" />
 </button>
 
 <div
@@ -39,7 +39,7 @@ const mobileMenuId = "mobile-menu";
     data-drawer-hide={mobileMenuId}
     class="absolute end-2.5 top-2.5 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900"
   >
-    <Icon name="ph:x" class="size-3" />
+    <Icon name="ph:x" class="size-3" aria-hidden="true" />
     <span class="sr-only">Close menu</span>
   </button>
   <div class="overflow-y-auto py-4">
@@ -59,8 +59,16 @@ const mobileMenuId = "mobile-menu";
                 <span class="ms-3 flex-1 whitespace-nowrap text-left">
                   {link.text}
                 </span>
-                <Icon name="ph:caret-down" class="expand-icon size-3" />
-                <Icon name="ph:caret-up" class="collapse-icon size-3" />
+                <Icon
+                  name="ph:caret-down"
+                  class="expand-icon size-3"
+                  aria-hidden="true"
+                />
+                <Icon
+                  name="ph:caret-up"
+                  class="collapse-icon size-3"
+                  aria-hidden="true"
+                />
               </button>
               <ul
                 id={collapseId(link)}

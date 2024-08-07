@@ -45,7 +45,7 @@ const dropdownTriggerId = (link: NavLinkGroup) => "show-" + dropdownId(link);
                 data-dropdown-toggle={dropdownId(link)}
               >
                 {link.text}
-                <Icon name="ph:caret-down" class="size-4" />
+                <Icon name="ph:caret-down" class="size-4" aria-hidden="true" />
               </button>
               <div
                 id={dropdownId(link)}
