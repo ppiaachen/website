@@ -43,23 +43,24 @@ const dropdownTriggerId = (link: NavLinkGroup) => "show-" + dropdownId(link);
                 id={dropdownTriggerId(link)}
                 class="mx-2 flex items-center gap-1 text-sm tracking-widest text-accent transition-colors duration-300 hover:text-accent/60 md:mx-4 md:text-base"
                 data-dropdown-toggle={dropdownId(link)}
+                data-dropdown-offset-skidding="10"
               >
                 {link.text}
                 <Icon name="ph:caret-down" class="size-4" aria-hidden="true" />
               </button>
               <div
                 id={dropdownId(link)}
-                class="z-10 hidden w-44 divide-y divide-gray-100 rounded-lg bg-white font-normal shadow"
+                class="z-10 hidden w-36 divide-y divide-gray-100 rounded-lg bg-white font-normal shadow"
               >
                 <ul
-                  class="text-gray py-2 text-sm"
+                  class="text-gray flex flex-col gap-2 py-4 text-sm tracking-widest md:text-base"
                   aria-labelledby={dropdownTriggerId(link)}
                 >
                   {link.children.map((child) => (
                     <li>
                       <a
                         href={child.href}
-                        class="mx-2 block px-4 py-2 text-sm tracking-widest text-accent transition-colors duration-300 hover:text-accent/60 md:mx-4 md:text-base"
+                        class="mx-2 text-accent transition-colors duration-300 hover:text-accent/60 md:mx-4"
                       >
                         {child.text}
                       </a>
