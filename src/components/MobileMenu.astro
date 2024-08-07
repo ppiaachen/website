@@ -26,7 +26,7 @@ const mobileMenuId = "mobile-menu";
 
 <div
   id={mobileMenuId}
-  class="fixed right-0 top-0 z-40 h-screen w-80 translate-x-full overflow-y-auto bg-white p-4 transition-transform lg:hidden"
+  class="fixed right-0 top-0 z-40 h-screen w-80 translate-x-full overflow-y-auto bg-white p-4 transition-transform lg:hidden [&>*]:aria-[hidden=true]:hidden"
   tabindex="-1"
   aria-labelledby="mobile-menu-label"
 >
@@ -57,7 +57,7 @@ const mobileMenuId = "mobile-menu";
                 aria-expanded="false"
                 aria-controls={collapseId(link)}
                 data-collapse-toggle={collapseId(link)}
-                class="group flex w-full items-center rounded-lg p-2 text-base text-gray-900 transition duration-75 hover:bg-gray-100 [&>.collapse-icon]:aria-[expanded=true]:block [&>.collapse-icon]:aria-[expanded=false]:hidden [&>.expand-icon]:aria-[expanded=false]:block [&>.expand-icon]:aria-[expanded=true]:hidden"
+                class="group flex w-full items-center rounded-lg p-2 text-base text-gray-900 transition duration-75 hover:bg-gray-100 [&>.collapse-icon]:aria-[expanded=false]:hidden [&>.expand-icon]:aria-[expanded=true]:hidden"
               >
                 <span class="ms-3 flex-1 whitespace-nowrap text-left">
                   {link.text}
