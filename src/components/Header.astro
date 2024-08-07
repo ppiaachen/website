@@ -1,15 +1,20 @@
 ---
 import { Image } from "astro:assets";
 import MobileMenu from "./MobileMenu.astro";
-import logo from "../assets/logo-ppiaachen.png";
-import { links, hasChildren } from "@/lib/nav-links";
+import logo from "@/assets/logo-ppiaachen.png";
+import { links, hasChildren, type NavLinkGroup } from "@/lib/nav-links";
 import createSlug from "@/lib/create-slug";
+import ChevronDown from "./ChevronDown.astro";
 
 const { pathname } = Astro.url;
 const isActive = (href: string) => {
   const subpath = pathname.match(/[^\/]+/g);
   return href === pathname || href === "/" + subpath?.[0];
 };
+
+const dropdownId = (link: NavLinkGroup) =>
+  "h-dropdown-" + createSlug(link.text);
+const dropdownTriggerId = (link: NavLinkGroup) => "show-" + dropdownId(link);
 ---
 
 <header>
@@ -34,33 +39,20 @@ const isActive = (href: string) => {
           hasChildren(link) ? (
             <li>
               <button
-                id={`show-h-dropdown-${createSlug(link.text)}`}
+                id={dropdownTriggerId(link)}
                 class="mx-2 flex items-center text-sm tracking-widest text-accent transition-colors duration-300 hover:text-accent/60 md:mx-4 md:text-base"
+                data-dropdown-toggle={dropdownId(link)}
               >
                 {link.text}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="m6 9l6 6l6-6"
-                  />
-                </svg>
+                <ChevronDown height={16} width={16} />
               </button>
               <div
-                id={`h-dropdown-${createSlug(link.text)}`}
+                id={dropdownId(link)}
                 class="z-10 hidden w-44 divide-y divide-gray-100 rounded-lg bg-white font-normal shadow"
               >
                 <ul
                   class="text-gray py-2 text-sm"
-                  aria-labelledby="dropdown-lists"
+                  aria-labelledby={dropdownTriggerId(link)}
                 >
                   {link.children.map((child) => (
                     <li>
@@ -92,25 +84,8 @@ const isActive = (href: string) => {
 </header>
 
 <script>
-  import Dropdown from "flowbite/lib/esm/components/dropdown";
+  import { initDropdowns } from "flowbite/lib/esm/components/dropdown";
   document.addEventListener("astro:page-load", () => {
-    const $triggerEls = document.querySelectorAll('[id^="show-h-dropdown-"]');
-
-    $triggerEls.forEach(($triggerEl) => {
-      const targetId = $triggerEl.id.replace("show-", "");
-      if (!targetId) return;
-      const $targetEl = document.getElementById(targetId);
-      const instanceOptions = {
-        id: targetId,
-        override: true,
-      };
-
-      new Dropdown(
-        $targetEl,
-        $triggerEl as HTMLElement,
-        undefined,
-        instanceOptions
-      );
-    });
+    initDropdowns();
   });
 </script>

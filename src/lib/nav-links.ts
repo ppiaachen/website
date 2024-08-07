@@ -1,14 +1,15 @@
-type NavLink = {
+export type NavLink = {
   text: string;
   href: string;
 };
 
-type NavLinkGroup = {
+export type NavLinkGroup = {
   text: string;
   children: NavLink[];
 };
 
-type NavLinks = (NavLink | NavLinkGroup)[];
+export type NavLinks = (NavLink | NavLinkGroup)[];
+
 export const hasChildren = (
   link: NavLink | NavLinkGroup,
 ): link is NavLinkGroup => {
