@@ -1,0 +1,16 @@
+---
+import { getEntry } from "astro:content";
+import type { CollectionKey } from "astro:content";
+
+type Props = {
+  collectionKey: CollectionKey;
+  slug: string;
+};
+
+const { collectionKey, slug } = Astro.props;
+const entry =
+  collectionKey && slug ? await getEntry(collectionKey, slug) : null;
+const r = await entry?.render();
+---
+
+{r ? <r.Content /> : null}
