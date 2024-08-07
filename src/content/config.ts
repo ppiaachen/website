@@ -2,16 +2,22 @@ import { defineCollection, z } from "astro:content";
 
 const events = defineCollection({
   type: "content",
-  // Type-check frontmatter using a schema
   schema: z.object({
     title: z.string(),
     description: z.string(),
     status: z.enum(["draft", "published"]).optional(),
-    // Transform string to Date object
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
     heroImage: z.string(),
   }),
 });
 
-export const collections = { events };
+const faq = defineCollection({
+  type: "content",
+  schema: z.object({
+    question: z.string(),
+  }),
+});
+
+export const collections = { events, faq };
+
