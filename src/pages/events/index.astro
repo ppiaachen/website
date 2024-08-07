@@ -2,7 +2,6 @@
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
-import AspectRatio from "@/components/AspectRatio.astro";
 import FormattedDate from "@/components/FormattedDate.astro";
 
 const events = (await getCollection("events"))
@@ -32,14 +31,15 @@ const loadImage = (path: string) => {
         <div class="w-full md:w-1/2">
           <div class="event-square">
             <a href={`/events/${event.slug}/`}>
-              <AspectRatio ratio={1 / 1}>
+              <div class="aspect-h-1 aspect-w-1">
                 <Image
-                  loading="lazy"
-                  width={600}
+                  class="size-full object-cover"
+                  loading="eager"
+                  width={800}
                   src={loadImage(event.data.heroImage)}
                   alt=""
                 />
-              </AspectRatio>
+              </div>
               <div class="absolute right-3 top-3 bg-black/50 px-3 py-2 text-xs font-bold text-white">
                 <FormattedDate date={event.data.pubDate} />
               </div>

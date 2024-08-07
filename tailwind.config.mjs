@@ -27,5 +27,12 @@ export default {
       },
     },
   },
-  plugins: [require("@tailwindcss/typography"), require("flowbite/plugin")],
+  corePlugins: {
+    aspectRatio: false,
+  },
+  plugins: [
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/aspect-ratio"),
+    require("flowbite/plugin"),
+  ],
 };
