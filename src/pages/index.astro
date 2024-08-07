@@ -298,24 +298,24 @@ const accordionTriggerId = (slug: string) => "show-" + accordionId(slug);
 
     const faqRootId = "faq-accordion";
     const accordionElement = document.getElementById(faqRootId);
-
     if (!accordionElement) return;
 
-    const faqIds = [];
-    const accordionItemWrappers = accordionElement.children[0].children;
-    for (let accordionItemWrapper of accordionItemWrappers) {
-      const accordionBody = accordionItemWrapper.querySelector("div");
-      if (accordionBody && accordionBody.id.startsWith("faq-")) {
-        faqIds.push(accordionBody.id);
-      }
-    }
+    const accordionBodyList =
+      accordionElement.querySelectorAll("div[id^='faq-']");
+    if (!accordionBodyList) return;
 
-    const accordionItems = faqIds.map((faqId) => ({
-      id: faqId,
-      triggerEl: document.querySelector("#show-" + faqId) as HTMLElement,
-      targetEl: document.querySelector("#" + faqId) as HTMLElement,
-      active: true,
-    }));
+    const accordionItems = Array.from(accordionBodyList).map(
+      (accordionBody) => ({
+        id: accordionBody.id,
+        triggerEl: accordionElement.querySelector(
+          "#show-" + accordionBody.id
+        ) as HTMLElement,
+        targetEl: accordionElement.querySelector(
+          "#" + accordionBody.id
+        ) as HTMLElement,
+        active: true,
+      })
+    );
 
     const options = {
       alwaysOpen: false,
