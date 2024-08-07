@@ -85,8 +85,10 @@ const dropdownTriggerId = (link: NavLinkGroup) => "show-" + dropdownId(link);
 </header>
 
 <script>
-  import { initDropdowns } from "flowbite/lib/esm/components/dropdown";
-  document.addEventListener("astro:page-load", () => {
+  document.addEventListener("astro:page-load", async () => {
+    const { initDropdowns } = await import(
+      "flowbite/lib/esm/components/dropdown"
+    );
     initDropdowns();
   });
 </script>

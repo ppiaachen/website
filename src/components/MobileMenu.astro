@@ -96,10 +96,11 @@ const mobileMenuId = "mobile-menu";
 </div>
 
 <script>
-  import { initCollapses } from "flowbite/lib/esm/components/collapse";
-  import { initDrawers } from "flowbite/lib/esm/components/drawer";
-
-  document.addEventListener("astro:page-load", () => {
+  document.addEventListener("astro:page-load", async () => {
+    const { initCollapses } = await import(
+      "flowbite/lib/esm/components/collapse"
+    );
+    const { initDrawers } = await import("flowbite/lib/esm/components/drawer");
     initCollapses();
     initDrawers();
   });
