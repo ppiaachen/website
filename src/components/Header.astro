@@ -50,7 +50,7 @@ const dropdownId = (link: NavLinkGroup) =>
                   {link.text}
                   <Icon
                     name="ph:caret-down"
-                    class="ms-1 size-4 shrink-0 duration-300 hs-dropdown-open:-rotate-180 sm:hs-dropdown-open:rotate-0"
+                    class="ms-1 size-4 shrink-0 duration-300 hs-dropdown-open:-rotate-180"
                     aria-hidden="true"
                   />
                 </button>
@@ -75,8 +75,11 @@ const dropdownId = (link: NavLinkGroup) =>
           ) : (
             <li
               class:list={[
-                "mx-2 text-sm tracking-widest text-accent transition-colors duration-300 hover:text-accent/60 md:mx-4 md:text-base",
-                isActive(link.href) ? "border-b-2 border-b-blue-700" : "",
+                "relative mx-2 text-sm tracking-widest text-accent transition-colors duration-300 hover:text-accent/60 md:mx-4 md:text-base",
+                {
+                  "before:absolute before:bottom-0.5 before:start-0 before:-z-[1] before:h-1 before:w-full before:bg-blue-300":
+                    isActive(link.href),
+                },
               ]}
             >
               <a href={link.href}>{link.text}</a>
