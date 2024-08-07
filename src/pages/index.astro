@@ -6,7 +6,7 @@ import Render from "@/components/Render.astro";
 import { Image } from "astro:assets";
 
 const faq = await getCollection("faq");
-const accordionId = (slug: string) => "faq-" + slug;
+const accordionId = (slug: string) => "faq-ac-" + slug;
 const accordionTriggerId = (slug: string) => "show-" + accordionId(slug);
 ---
 
@@ -242,34 +242,41 @@ const accordionTriggerId = (slug: string) => "show-" + accordionId(slug);
           </p>
         </div>
       </div>
-      <div id="faq-accordion" class="md:col-span-3">
-        <div class="divide-y divide-gray-200">
+      <div class="md:col-span-3">
+        <div class="hs-accordion-group divide-y divide-gray-200">
           {
             faq.map((qna, idx) => (
-              <div class="pb-3 pt-6">
+              <div
+                id={accordionTriggerId(qna.slug)}
+                class:list={[
+                  "hs-accordion pb-3",
+                  { active: idx === 0 },
+                  { "pt-6": idx > 0 },
+                ]}
+              >
                 <button
-                  id={accordionTriggerId(qna.slug)}
-                  type="button"
-                  class="inline-flex w-full items-center justify-between gap-x-3 rounded-lg pb-3 text-start font-semibold text-gray-800 hover:text-gray-500 focus:text-gray-500 focus:outline-none md:text-lg"
-                  aria-controls={accordionId(qna.slug)}
+                  class="hs-accordion-toggle group inline-flex w-full items-center justify-between gap-x-3 rounded-lg pb-3 text-start font-semibold text-gray-800 transition hover:text-gray-500 focus:text-gray-500 focus:outline-none md:text-lg"
                   aria-expanded={idx === 0 ? "true" : "false"}
+                  aria-controls={accordionId(qna.slug)}
                 >
-                  <span>{qna.data.question}</span>
+                  {qna.data.question}
                   <Icon
-                    name="ph:caret-up"
-                    class="block size-5 shrink-0 rotate-180 text-gray-600 transition-transform duration-200 ease-in-out"
+                    name="ph:caret-down"
+                    class="block size-5 shrink-0 text-gray-600 transition-transform duration-300 group-hover:text-gray-500 hs-accordion-active:-rotate-180"
                     aria-hidden="true"
                   />
                 </button>
                 <div
                   id={accordionId(qna.slug)}
-                  class="w-full overflow-hidden"
+                  class:list={[
+                    "hs-accordion-content w-full overflow-hidden transition-[height] duration-300",
+                    { hidden: idx > 0 },
+                  ]}
+                  role="region"
                   aria-labelledby={accordionTriggerId(qna.slug)}
                 >
                   <div class="text-gray-600">
-                    <div class="mb-2 text-gray-500">
-                      <Render collectionKey="faq" slug={qna.slug} />
-                    </div>
+                    <Render collectionKey="faq" slug={qna.slug} />
                   </div>
                 </div>
               </div>
@@ -279,55 +286,11 @@ const accordionTriggerId = (slug: string) => "show-" + accordionId(slug);
       </div>
     </div>
   </section>
+
+  <script>
+    document.addEventListener("astro:page-load", async () => {
+      const { default: HSAccordion } = await import("preline/dist/accordion");
+      HSAccordion.autoInit();
+    });
+  </script>
 </Layout>
-
-<style>
-  #faq-accordion .active > svg {
-    @apply rotate-0;
-  }
-  #faq-accordion .inactive > svg {
-    @apply rotate-180;
-  }
-</style>
-
-<script>
-  document.addEventListener("astro:page-load", async () => {
-    const { default: Accordion } = await import(
-      "flowbite/lib/esm/components/accordion"
-    );
-
-    const faqRootId = "faq-accordion";
-    const accordionElement = document.getElementById(faqRootId);
-    if (!accordionElement) return;
-
-    const accordionBodyList =
-      accordionElement.querySelectorAll("div[id^='faq-']");
-    if (!accordionBodyList) return;
-
-    const accordionItems = Array.from(accordionBodyList).map(
-      (accordionBody) => ({
-        id: accordionBody.id,
-        triggerEl: accordionElement.querySelector(
-          "#show-" + accordionBody.id
-        ) as HTMLElement,
-        targetEl: accordionElement.querySelector(
-          "#" + accordionBody.id
-        ) as HTMLElement,
-        active: true,
-      })
-    );
-
-    const options = {
-      alwaysOpen: false,
-      activeClasses: "active",
-      inactiveClasses: "inactive",
-    };
-
-    const instanceOptions = {
-      id: faqRootId,
-      override: true,
-    };
-
-    new Accordion(accordionElement, accordionItems, options, instanceOptions);
-  });
-</script>

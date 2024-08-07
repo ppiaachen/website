@@ -17,7 +17,7 @@
     "@playform/compress": "^0.1.1",
     "astro": "^4.13.0",
     "astro-icon": "^1.1.0",
-    "flowbite": "^2.4.1",
+    "preline": "^2.4.1",
     "tailwindcss": "^3.4.7",
     "typescript": "^5.5.4"
   },
