@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
-import BaseHead from "@/components/BaseHead.astro";
+import BaseLayout from "./BaseLayout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import FormattedDate from "@/components/FormattedDate.astro";
@@ -25,45 +25,40 @@ const loadImage = (path: string) => {
 };
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
-  </head>
-  <body class="font-sans antialiased">
-    <Header />
-    <main class="mx-auto min-h-[80vh] max-w-screen-xl">
-      <article class="prose prose-stone mx-auto lg:prose-xl">
-        <div class="mx-auto w-1/3">
-          {
-            heroImage && (
-              <Image
-                class="rounded-lg"
-                loading="eager"
-                src={loadImage(heroImage)}
-                alt=""
-              />
-            )
-          }
-        </div>
-        <div class="mx-auto mt-10 w-3/4">
-          <div class="mb-10 text-center uppercase">
-            <h1 class="prose-base md:prose-xl">{title}</h1>
-            <div class="date">
-              <FormattedDate date={pubDate} />
-              {
-                updatedDate && (
-                  <div class="last-updated-on">
-                    Last updated on <FormattedDate date={updatedDate} />
-                  </div>
-                )
-              }
-            </div>
-            <hr />
+<BaseLayout title={title} description={description}>
+  <Header />
+  <main class="mx-auto min-h-[80vh] max-w-screen-xl">
+    <article class="prose prose-stone mx-auto lg:prose-xl">
+      <div class="mx-auto w-1/3">
+        {
+          heroImage && (
+            <Image
+              class="rounded-lg"
+              loading="eager"
+              src={loadImage(heroImage)}
+              alt=""
+            />
+          )
+        }
+      </div>
+      <div class="mx-auto mt-10 w-3/4">
+        <div class="mb-10 text-center uppercase">
+          <h1 class="prose-base md:prose-xl">{title}</h1>
+          <div class="date">
+            <FormattedDate date={pubDate} />
+            {
+              updatedDate && (
+                <div class="last-updated-on">
+                  Last updated on <FormattedDate date={updatedDate} />
+                </div>
+              )
+            }
           </div>
-          <slot />
+          <hr />
         </div>
-      </article>
-    </main>
-    <Footer />
-  </body>
-</html>
+        <slot />
+      </div>
+    </article>
+  </main>
+  <Footer />
+</BaseLayout>

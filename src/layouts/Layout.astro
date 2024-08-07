@@ -1,7 +1,7 @@
 ---
-import BaseHead from "@/components/BaseHead.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
+import BaseLayout from "./BaseLayout.astro";
 interface Props {
   title: string;
 }
@@ -9,16 +9,10 @@ interface Props {
 const { title } = Astro.props;
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead title={title} description="Perkumpulan Pelajar Indonesia" />
-  </head>
-  <body class="font-sans antialiased">
-    <Header />
-    <main class="mx-auto min-h-[80vh] max-w-screen-xl">
-      <slot />
-    </main>
-    <Footer />
-  </body>
-</html>
+<BaseLayout title={title} description="Perkumpulan Pelajar Indonesia">
+  <Header />
+  <main class="mx-auto min-h-[80vh] max-w-screen-xl">
+    <slot />
+  </main>
+  <Footer />
+</BaseLayout>
