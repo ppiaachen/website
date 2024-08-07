@@ -1,10 +1,7 @@
 ---
+import { Icon } from "astro-icon/components";
 import { links, hasChildren, type NavLinkGroup } from "@/lib/nav-links";
 import createSlug from "@/lib/create-slug";
-import X from "@/components/X.astro";
-import ChevronDown from "@/components/ChevronDown.astro";
-import Hamburger from "@/components/Hamburger.astro";
-import ChevronUp from "./ChevronUp.astro";
 
 const collapseId = (link: NavLinkGroup) =>
   "s-collapse-" + createSlug(link.text);
@@ -21,7 +18,7 @@ const mobileMenuId = "mobile-menu";
   data-drawer-show={mobileMenuId}
   data-drawer-placement="right"
 >
-  <Hamburger />
+  <Icon name="ph:list" class="size-8" />
 </button>
 
 <div
@@ -42,7 +39,7 @@ const mobileMenuId = "mobile-menu";
     data-drawer-hide={mobileMenuId}
     class="absolute end-2.5 top-2.5 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900"
   >
-    <X height={12} width={12} />
+    <Icon name="ph:x" class="size-3" />
     <span class="sr-only">Close menu</span>
   </button>
   <div class="overflow-y-auto py-4">
@@ -62,8 +59,8 @@ const mobileMenuId = "mobile-menu";
                 <span class="ms-3 flex-1 whitespace-nowrap text-left">
                   {link.text}
                 </span>
-                <ChevronDown class="expand-icon" height={12} width={12} />
-                <ChevronUp class="collapse-icon" height={12} width={12} />
+                <Icon name="ph:caret-down" class="expand-icon size-3" />
+                <Icon name="ph:caret-up" class="collapse-icon size-3" />
               </button>
               <ul
                 id={collapseId(link)}

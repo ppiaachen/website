@@ -1,10 +1,10 @@
 ---
 import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
 import MobileMenu from "./MobileMenu.astro";
 import logo from "@/assets/logo-ppiaachen.png";
 import { links, hasChildren, type NavLinkGroup } from "@/lib/nav-links";
 import createSlug from "@/lib/create-slug";
-import ChevronDown from "./ChevronDown.astro";
 
 const { pathname } = Astro.url;
 const isActive = (href: string) => {
@@ -23,9 +23,10 @@ const dropdownTriggerId = (link: NavLinkGroup) => "show-" + dropdownId(link);
   >
     <a href="/" aria-label="PPI Aachen homepage">
       <Image
+        class="h-20 w-auto"
         loading="eager"
-        width={105}
-        height={105}
+        width={150}
+        height={150}
         src={logo}
         alt="Logo PPI Aachen."
       />
@@ -40,11 +41,11 @@ const dropdownTriggerId = (link: NavLinkGroup) => "show-" + dropdownId(link);
             <li>
               <button
                 id={dropdownTriggerId(link)}
-                class="mx-2 flex items-center text-sm tracking-widest text-accent transition-colors duration-300 hover:text-accent/60 md:mx-4 md:text-base"
+                class="mx-2 flex items-center gap-1 text-sm tracking-widest text-accent transition-colors duration-300 hover:text-accent/60 md:mx-4 md:text-base"
                 data-dropdown-toggle={dropdownId(link)}
               >
                 {link.text}
-                <ChevronDown height={16} width={16} />
+                <Icon name="ph:caret-down" class="size-4" />
               </button>
               <div
                 id={dropdownId(link)}
