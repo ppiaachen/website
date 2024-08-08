@@ -33,11 +33,11 @@ const loadImage = (path: string) => {
         {
           events.map((event) => (
             <div class="w-full md:w-1/2">
-              <div class="event-square">
+              <div class="group relative m-4">
                 <a href={`/events/${event.slug}/`}>
-                  <div class="aspect-h-1 aspect-w-1">
+                  <div class="aspect-h-1 aspect-w-1 overflow-hidden">
                     <Image
-                      class="size-full object-cover"
+                      class="size-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-105 group-focus:scale-105"
                       loading="eager"
                       width={550}
                       src={loadImage(event.data.heroImage)}
@@ -47,11 +47,11 @@ const loadImage = (path: string) => {
                   <div class="absolute right-3 top-3 bg-black/50 px-3 py-2 text-xs font-bold text-white">
                     <FormattedDate date={event.data.pubDate} />
                   </div>
-                  <div class="event-overlay">
+                  <div class="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-[linear-gradient(rgba(0,0,0,0),rgba(243,238,227,1)_300px)] p-10 pt-52">
                     <h2 class="mb-3 text-2xl font-light uppercase">
                       {event.data.title}
                     </h2>
-                    <div class="event-description">
+                    <div class="event-description max-h-0 overflow-hidden opacity-0 transition-[max-height,opacity] duration-700 ease-in-out group-hover:max-h-[400px] group-hover:opacity-100">
                       <p class="text-base font-light">
                         {event.data.description}
                       </p>
@@ -66,25 +66,3 @@ const loadImage = (path: string) => {
     </div>
   </section>
 </Layout>
-
-<style>
-  .event-square {
-    @apply relative m-4;
-  }
-  .event-overlay {
-    @apply pointer-events-none absolute inset-x-0 bottom-0 z-10 p-10 pt-52;
-    background-image: linear-gradient(
-      rgba(0, 0, 0, 0),
-      rgba(243, 238, 227, 1) 300px
-    );
-  }
-  .event-square:hover .event-description {
-    @apply max-h-[400px] opacity-100;
-  }
-  .event-description {
-    @apply max-h-0 overflow-hidden opacity-0;
-    transition:
-      1s ease-in-out opacity,
-      1s ease-in-out max-height;
-  }
-</style>
