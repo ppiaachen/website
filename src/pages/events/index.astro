@@ -24,38 +24,46 @@ const loadImage = (path: string) => {
 ---
 
 <Layout title="Events | PPI Aachen">
-  <h1 class="my-20 text-center text-7xl font-bold">Events</h1>
-  <section class="flex flex-row flex-wrap justify-center">
-    {
-      events.map((event) => (
-        <div class="w-full md:w-1/2">
-          <div class="event-square">
-            <a href={`/events/${event.slug}/`}>
-              <div class="aspect-h-1 aspect-w-1">
-                <Image
-                  class="size-full object-cover"
-                  loading="eager"
-                  width={550}
-                  src={loadImage(event.data.heroImage)}
-                  alt=""
-                />
+  <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+    <h1 class="my-20 text-center text-7xl font-bold">Events</h1>
+    <div
+      class="overflow-hidden before:absolute before:start-1/2 before:top-0 before:-z-[1] before:size-full before:-translate-x-1/2 before:transform before:bg-[url(/polygon-bg.svg)] before:bg-cover before:bg-top before:bg-no-repeat before:opacity-50"
+    >
+      <div class="flex flex-row flex-wrap justify-center">
+        {
+          events.map((event) => (
+            <div class="w-full md:w-1/2">
+              <div class="event-square">
+                <a href={`/events/${event.slug}/`}>
+                  <div class="aspect-h-1 aspect-w-1">
+                    <Image
+                      class="size-full object-cover"
+                      loading="eager"
+                      width={550}
+                      src={loadImage(event.data.heroImage)}
+                      alt=""
+                    />
+                  </div>
+                  <div class="absolute right-3 top-3 bg-black/50 px-3 py-2 text-xs font-bold text-white">
+                    <FormattedDate date={event.data.pubDate} />
+                  </div>
+                  <div class="event-overlay">
+                    <h2 class="mb-3 text-2xl font-light uppercase">
+                      {event.data.title}
+                    </h2>
+                    <div class="event-description">
+                      <p class="text-base font-light">
+                        {event.data.description}
+                      </p>
+                    </div>
+                  </div>
+                </a>
               </div>
-              <div class="absolute right-3 top-3 bg-black/50 px-3 py-2 text-xs font-bold text-white">
-                <FormattedDate date={event.data.pubDate} />
-              </div>
-              <div class="event-overlay">
-                <h2 class="mb-3 text-2xl font-light uppercase">
-                  {event.data.title}
-                </h2>
-                <div class="event-description">
-                  <p class="text-base font-light">{event.data.description}</p>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-      ))
-    }
+            </div>
+          ))
+        }
+      </div>
+    </div>
   </section>
 </Layout>
 

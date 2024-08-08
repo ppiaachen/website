@@ -41,19 +41,20 @@ const dropdownId = (link: NavLinkGroup) =>
                 <button
                   id={dropdownId(link)}
                   type="button"
-                  class="hs-dropdown-toggle mx-2 flex w-full items-center gap-1 text-sm tracking-widest text-accent transition-colors duration-300 hover:text-accent/60 md:mx-4 md:text-base"
+                  class="hs-dropdown-toggle group mx-2 flex items-center gap-1 md:mx-4"
                   aria-haspopup="menu"
                   aria-expanded="false"
                   aria-label="Dropdown Menu"
                 >
-                  {link.text}
+                  <span class="relative text-sm tracking-widest text-accent transition-colors duration-300 group-hover:text-accent/80 group-hover:before:absolute group-hover:before:bottom-0.5 group-hover:before:start-0 group-hover:before:-z-[1] group-hover:before:h-1 group-hover:before:w-full group-hover:before:bg-sky-400 md:text-base">
+                    {link.text}
+                  </span>
                   <Icon
                     name="ph:caret-down"
                     class="ms-1 size-4 shrink-0 duration-300 hs-dropdown-open:-rotate-180"
                     aria-hidden="true"
                   />
                 </button>
-
                 <div
                   class="hs-dropdown-menu sm: top-full z-10 hidden space-y-1 rounded-lg bg-white p-1 opacity-0 transition-[opacity,margin] duration-[150ms] ease-in-out before:absolute before:-top-5 before:start-0 before:h-5 before:w-full hs-dropdown-open:opacity-100 sm:w-48 sm:border sm:shadow-md"
                   role="menu"
@@ -74,7 +75,7 @@ const dropdownId = (link: NavLinkGroup) =>
           ) : (
             <li
               class:list={[
-                "relative mx-2 text-sm tracking-widest text-accent transition-colors duration-300 hover:text-accent/60 md:mx-4 md:text-base",
+                "relative mx-2 text-sm tracking-widest text-accent transition-colors duration-300 hover:text-accent/80 hover:before:absolute hover:before:bottom-0.5 hover:before:start-0 hover:before:-z-[1] hover:before:h-1 hover:before:w-full hover:before:bg-blue-300 md:mx-4 md:text-base",
                 {
                   "before:absolute before:bottom-0.5 before:start-0 before:-z-[1] before:h-1 before:w-full before:bg-blue-300":
                     isActive(link.href),
