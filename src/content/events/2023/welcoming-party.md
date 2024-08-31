@@ -1,6 +1,6 @@
 ---
 title: "AACHENER 101 : Welcoming Party"
-description: "Lorem ipsum dolor sit amet"
+description: "Dalam rangka menyambut kedatangan kalian PPI Aachen mengadakan acara “Welcoming Party” untuk kita berkenalan sekaligus memberikan kalian informasi mengenai hal-hal dasar tinggal di Aachen."
 status: "published"
 pubDate: "Oct 9 2023"
 heroImage: "/src/assets/events/2023/ersti-party.png"

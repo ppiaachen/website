@@ -1,6 +1,6 @@
 ---
 title: "Halloween Party KMKI x PPI Aachen"
-description: "Lorem ipsum dolor sit amet"
+description: "Dalam rangka meramaikan pesta „HALLOWEEN“ KMKI berkolaborasi bersama dengan PPI Aachen, dalam acara “NIGHT OF FRIGHT”, yang bertemakan Rumah Hantu siap menghantui malam kalian."
 status: "published"
 pubDate: "Nov 6 2022"
 heroImage: "/src/assets/events/2022/halloween-x-kmki.jpeg"
