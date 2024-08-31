@@ -22,7 +22,7 @@ import { links as socLinks } from "@/lib/social-links";
               <a
                 href={link.href}
                 class="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500"
-                aria-label="Reddit"
+                aria-label={link.text}
               >
                 {link.text}
               </a>
@@ -41,8 +41,9 @@ import { links as socLinks } from "@/lib/social-links";
           socLinks.map((link) => (
             <a
               href={link.url}
+              target=”_blank”
               class="mx-2 text-gray-500 transition-colors duration-300 hover:text-blue-500"
-              aria-label="Instagram"
+              aria-label={link.label}
             >
               <Icon name={link.iconName} class="size-5" aria-hidden="true" />
             </a>
