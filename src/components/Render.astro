@@ -2,10 +2,10 @@
 import { getEntry } from "astro:content";
 import type { CollectionKey } from "astro:content";
 
-type Props = {
+interface Props {
   collectionKey: CollectionKey;
   slug: string;
-};
+}
 
 const { collectionKey, slug } = Astro.props;
 const entry =
