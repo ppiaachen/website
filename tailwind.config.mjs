@@ -8,7 +8,7 @@ export default {
       fontFamily: {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
       },
-      textColor: {
+      colors: {
         accent: "#0067ba",
       },
     },
