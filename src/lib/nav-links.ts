@@ -24,7 +24,6 @@ export const links: NavLinks = [
   {
     text: "About us",
     children: [
-      { href: "/faq", text: "FAQ" },
       { href: "/community", text: "Community" },
       { href: "/ad-art", text: "AD ART" },
     ],
