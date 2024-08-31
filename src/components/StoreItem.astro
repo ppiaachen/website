@@ -1,0 +1,55 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+
+type ItemType = "t-shirt" | "others";
+
+interface Props {
+  name: string;
+  image: ImageMetadata;
+  price: number;
+  type?: ItemType;
+}
+
+const { name, image, price, type = "others" } = Astro.props;
+---
+
+<div class="flex h-full flex-col border">
+  <div class="aspect-h-5 aspect-w-4">
+    <Image class="object-cover" src={image} loading="eager" alt={name} />
+  </div>
+  <div class="flex h-full flex-col p-4 md:p-5">
+    <div class="gap-2 border-b border-b-slate-200 pb-4">
+      <h4 class="text-2xl">{name}</h4>
+      {
+        type === "t-shirt" && (
+          <Fragment>
+            <div class="text-slate-500">
+              <Icon name="ph:ruler" class="inline size-5" aria-hidden="true" />
+              S, M, L, XL
+            </div>
+            <div class="text-slate-500">
+              <Icon
+                name="ph:t-shirt"
+                class="inline size-5"
+                aria-hidden="true"
+              />
+              100% Cotton
+            </div>
+          </Fragment>
+        )
+      }
+    </div>
+    <div class="my-4 text-4xl font-bold text-accent">{price}€</div>
+    <p class="prose mb-8 text-gray-500">
+      <slot />
+    </p>
+    <a
+      class="border-accent hover:bg-accent mt-auto border-2 px-10 py-4 text-center font-extrabold hover:text-white"
+      href="https://www.instagram.com/aachen.studio"
+      target="”_blank”"
+    >
+      ORDER NOW
+    </a>
+  </div>
+</div>
