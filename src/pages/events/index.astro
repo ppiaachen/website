@@ -7,20 +7,6 @@ import FormattedDate from "@/components/FormattedDate.astro";
 const events = (await getCollection("events"))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .filter((event) => event.data.status === "published");
-
-const images = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/assets/**/*.{jpeg,jpg,png}"
-);
-
-const loadImage = (path: string) => {
-  if (!images[path])
-    throw new Error(
-      `"${path}" does not exist in glob: "src/assets/*.{jpeg,jpg,png} ${Object.keys(
-        images
-      )}"`
-    );
-  return images[path]();
-};
 ---
 
 <Layout title="Events | PPI Aachen">
@@ -39,8 +25,7 @@ const loadImage = (path: string) => {
                     <Image
                       class="size-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-105 group-focus:scale-105"
                       loading="eager"
-                      width={550}
-                      src={loadImage(event.data.heroImage)}
+                      src={event.data.heroImage}
                       alt=""
                     />
                   </div>
