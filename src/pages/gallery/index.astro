@@ -1,7 +1,56 @@
 ---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
 import Layout from "@/layouts/Layout.astro";
+import { images as galImages } from "@/data/gallery-images";
 ---
 
 <Layout title="Gallery | PPI Aachen">
-  <div></div>
+  <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+    <h1 class="my-20 text-center text-7xl font-bold">Gallery</h1>
+    <div
+      class="overflow-hidden before:absolute before:start-1/2 before:top-0 before:-z-[1] before:size-full before:-translate-x-1/2 before:transform before:bg-[url(/polygon-bg.svg)] before:bg-cover before:bg-top before:bg-no-repeat before:opacity-50"
+    >
+      <div id="gallery" class="h-0">
+        {
+          galImages.map((galItem, index) => (
+            <a
+              class="group relative block overflow-hidden rounded-lg"
+              href={galItem.eventUrl}
+            >
+              <Image
+                class="h-auto w-80 object-cover"
+                loading={index < 9 ? "eager" : "lazy"}
+                src={galItem.src}
+                alt={galItem.alt}
+              />
+              <div class="absolute bottom-1 end-1 opacity-0 transition group-hover:opacity-100">
+                <div class="flex items-center gap-x-1 rounded-lg border border-gray-200 bg-white px-2 py-1 text-gray-800">
+                  <Icon name="ph:magnifying-glass" class="size-3 shrink-0" />
+                  <span class="text-xs">View</span>
+                </div>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
 </Layout>
+
+<script>
+  document.addEventListener("astro:page-load", async () => {
+    const { default: MagicGrid } = await import("magic-grid");
+    const el = document.querySelector<HTMLElement>("#gallery");
+    if (!el) return;
+
+    let magicGrid = new MagicGrid({
+      container: el,
+      static: true,
+      animate: true,
+      useMin: true,
+    });
+
+    magicGrid.listen();
+  });
+</script>
