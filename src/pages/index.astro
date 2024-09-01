@@ -651,7 +651,7 @@ const accordionTriggerId = (slug: string) => "show-" + accordionId(slug);
                   role="region"
                   aria-labelledby={accordionTriggerId(qna.slug)}
                 >
-                  <div class="text-gray-600">
+                  <div class="prose text-gray-600">
                     <Render collectionKey="faq" slug={qna.slug} />
                   </div>
                 </div>
