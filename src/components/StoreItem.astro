@@ -2,22 +2,89 @@
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 
-type ItemType = "t-shirt" | "others";
-
-interface Props {
+interface BaseProps {
   name: string;
-  image: ImageMetadata;
   price: number;
-  type?: ItemType;
+  type?: "t-shirt" | "others";
+}
+interface SingleImage extends BaseProps {
+  image: ImageMetadata;
+}
+interface MultipleImages extends BaseProps {
+  images: ImageMetadata[];
 }
 
-const { name, image, price, type = "others" } = Astro.props;
+type Props = SingleImage | MultipleImages;
+
+const { name, price, type = "others" } = Astro.props;
+
+let image: ImageMetadata | null = null;
+let images: ImageMetadata[] | null = null;
+if ("image" in Astro.props) {
+  image = Astro.props.image;
+} else {
+  images = Astro.props.images;
+}
 ---
 
 <div class="flex h-full flex-col border">
-  <div class="aspect-h-5 aspect-w-4">
-    <Image class="object-cover" src={image} loading="eager" alt={name} />
-  </div>
+  {
+    image && (
+      <div class="aspect-h-5 aspect-w-4">
+        <Image class="object-cover" src={image} loading="eager" alt={name} />
+      </div>
+    )
+  }
+  {
+    images && (
+      <div data-hs-carousel='{"loadingClasses": "opacity-0"}' class="relative">
+        <div class="hs-carousel aspect-h-5 aspect-w-4 relative overflow-hidden">
+          <div class="hs-carousel-body absolute bottom-0 start-0 top-0 flex flex-nowrap opacity-0 transition-transform duration-700">
+            {images.map((img) => (
+              <div class="hs-carousel-slide">
+                <Image
+                  class="object-cover"
+                  src={img}
+                  loading="eager"
+                  alt={name}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+        <button
+          type="button"
+          class="hs-carousel-prev hs-carousel:disabled:opacity-50 group absolute inset-y-0 start-0 inline-flex h-full w-12 items-center justify-center text-white disabled:pointer-events-none"
+        >
+          <span
+            class="rounded-full bg-gray-800/10 p-2 text-2xl group-hover:bg-gray-800/20 group-focus:bg-gray-800/20 group-focus:outline-none"
+            aria-hidden="true"
+          >
+            <Icon name="ph:caret-left" class="size-5 shrink-0" />
+          </span>
+          <span class="sr-only">Previous</span>
+        </button>
+        <button
+          type="button"
+          class="hs-carousel-next hs-carousel:disabled:opacity-50 group absolute inset-y-0 end-0 inline-flex h-full w-12 items-center justify-center text-white disabled:pointer-events-none"
+        >
+          <span class="sr-only">Next</span>
+          <span
+            class="rounded-full bg-gray-800/10 p-2 text-2xl group-hover:bg-gray-800/20 group-focus:bg-gray-800/20 group-focus:outline-none"
+            aria-hidden="true"
+          >
+            <Icon name="ph:caret-right" class="size-5 shrink-0" />
+          </span>
+        </button>
+
+        <div class="hs-carousel-pagination absolute bottom-3 end-0 start-0 flex justify-center space-x-2">
+          {images.map(() => (
+            <span class="size-3 cursor-pointer rounded-full border border-gray-400 hs-carousel-active:border-accent hs-carousel-active:bg-accent" />
+          ))}
+        </div>
+      </div>
+    )
+  }
   <div class="flex h-full flex-col p-4 md:p-5">
     <div class="gap-2 border-b border-b-slate-200 pb-4">
       <h4 class="text-2xl">{name}</h4>
@@ -53,3 +120,10 @@ const { name, image, price, type = "others" } = Astro.props;
     </a>
   </div>
 </div>
+
+<script>
+  document.addEventListener("astro:page-load", async () => {
+    const { default: HSCarousel } = await import("preline/dist/carousel");
+    HSCarousel.autoInit();
+  });
+</script>

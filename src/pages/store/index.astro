@@ -5,7 +5,9 @@ import StoreItem from "@/components/StoreItem.astro";
 
 import tShirt from "@/assets/store/t-shirt.jpg";
 import kemben from "@/assets/store/kemben.jpg";
-import totebag from "@/assets/store/totebag-1.jpg";
+import totebag1 from "@/assets/store/totebag-1.jpg";
+import totebag2 from "@/assets/store/totebag-2.jpg";
+import totebag3 from "@/assets/store/totebag-3.jpg";
 ---
 
 <Layout title="Store | PPI Aachen">
@@ -44,7 +46,11 @@ import totebag from "@/assets/store/totebag-1.jpg";
             </StoreItem>
           </div>
           <div class="w-full px-6 pb-6">
-            <StoreItem name="Totebag" image={totebag} price={15}>
+            <StoreItem
+              name="Totebag"
+              images={[totebag1, totebag2, totebag3]}
+              price={15}
+            >
               PPI Aachen Totebag
             </StoreItem>
           </div>
