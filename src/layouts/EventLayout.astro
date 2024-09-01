@@ -11,7 +11,7 @@ type Props = CollectionEntry<"events">["data"];
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title + " | PPI Aachen"} description={description}>
   <Header />
   <main class="mx-auto min-h-[80vh] max-w-screen-xl">
     <article class="prose prose-stone mx-auto lg:prose-xl">
