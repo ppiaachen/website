@@ -13,14 +13,14 @@ import { images as galImages } from "@/data/gallery-images";
     >
       <div id="gallery" class="h-0">
         {
-          galImages.map((galItem, index) => (
+          galImages.map((galItem) => (
             <a
               class="group relative block overflow-hidden rounded-lg"
               href={galItem.eventUrl}
             >
               <Image
                 class="h-auto w-80 object-cover"
-                loading={index < 9 ? "eager" : "lazy"}
+                loading="lazy"
                 src={galItem.src}
                 alt={galItem.alt}
               />
