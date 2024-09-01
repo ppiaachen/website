@@ -89,3 +89,10 @@ const dropdownId = (link: NavLinkGroup) =>
     </ul>
   </nav>
 </header>
+
+<script>
+  document.addEventListener("astro:page-load", async () => {
+    const { default: HSDropdown } = await import("preline/dist/dropdown");
+    HSDropdown.autoInit();
+  });
+</script>
