@@ -11,11 +11,11 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.3",
-    "@astrojs/tailwind": "^5.1.0",
+    "@astrojs/tailwind": "^5.1.1",
     "@fontsource/inter": "^5.0.20",
     "@iconify-json/ph": "^1.2.0",
     "@playform/compress": "^0.1.1",
-    "astro": "^4.15.1",
+    "astro": "5.0.0-beta.1",
     "astro-icon": "^1.1.1",
     "magic-grid": "^3.4.7",
     "preline": "^2.4.1",

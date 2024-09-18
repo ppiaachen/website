@@ -623,7 +623,7 @@ const accordionTriggerId = (slug: string) => "show-" + accordionId(slug);
           {
             faq.map((qna, idx) => (
               <div
-                id={accordionTriggerId(qna.slug)}
+                id={accordionTriggerId(qna.id)}
                 class:list={[
                   "hs-accordion pb-3",
                   { active: idx === 0 },
@@ -633,7 +633,7 @@ const accordionTriggerId = (slug: string) => "show-" + accordionId(slug);
                 <button
                   class="hs-accordion-toggle group inline-flex w-full items-center justify-between gap-x-3 rounded-lg pb-3 text-start font-semibold text-gray-800 transition hover:text-gray-500 focus:text-gray-500 focus:outline-none md:text-lg"
                   aria-expanded={idx === 0 ? "true" : "false"}
-                  aria-controls={accordionId(qna.slug)}
+                  aria-controls={accordionId(qna.id)}
                 >
                   {qna.data.question}
                   <Icon
@@ -643,16 +643,16 @@ const accordionTriggerId = (slug: string) => "show-" + accordionId(slug);
                   />
                 </button>
                 <div
-                  id={accordionId(qna.slug)}
+                  id={accordionId(qna.id)}
                   class:list={[
                     "hs-accordion-content w-full overflow-hidden transition-[height] duration-300",
                     { hidden: idx > 0 },
                   ]}
                   role="region"
-                  aria-labelledby={accordionTriggerId(qna.slug)}
+                  aria-labelledby={accordionTriggerId(qna.id)}
                 >
                   <div class="prose text-gray-600">
-                    <Render collectionKey="faq" slug={qna.slug} />
+                    <Render collectionKey="faq" slug={qna.id} />
                   </div>
                 </div>
               </div>
