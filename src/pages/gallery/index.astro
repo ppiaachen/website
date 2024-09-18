@@ -11,11 +11,11 @@ import { images as galImages } from "@/data/gallery-images";
     <div
       class="overflow-hidden before:absolute before:start-1/2 before:top-0 before:-z-[1] before:size-full before:-translate-x-1/2 before:transform before:bg-[url(/polygon-bg.svg)] before:bg-cover before:bg-top before:bg-no-repeat before:opacity-50"
     >
-      <div id="gallery" class="h-0">
+      <div id="gallery" class="mx-auto opacity-0">
         {
           galImages.map((galItem) => (
             <a
-              class="group relative block overflow-hidden rounded-lg"
+              class="group relative block w-80 overflow-hidden rounded-lg"
               href={galItem.eventUrl}
             >
               <Image
@@ -40,17 +40,24 @@ import { images as galImages } from "@/data/gallery-images";
 
 <script>
   document.addEventListener("astro:page-load", async () => {
-    const { default: MagicGrid } = await import("magic-grid");
-    const el = document.querySelector<HTMLElement>("#gallery");
-    if (!el) return;
+    const { default: Bricks } = await import("bricks.js");
 
-    let magicGrid = new MagicGrid({
-      container: el,
-      static: true,
-      animate: true,
-      useMin: true,
+    const sizes = [
+      { columns: 1, gutter: 5 },
+      { mq: "768px", columns: 2, gutter: 10 },
+      { mq: "1024px", columns: 3, gutter: 25 },
+    ];
+
+    const instance = Bricks({
+      container: "#gallery",
+      packed: "data-packed",
+      sizes: sizes,
     });
 
-    magicGrid.listen();
+    instance.on("pack", () =>
+      document.getElementById("gallery")?.classList.remove("opacity-0")
+    );
+
+    instance.resize(true).pack();
   });
 </script>
