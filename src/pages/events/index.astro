@@ -26,6 +26,7 @@ const events = (await getCollection("events"))
                       class="size-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-105 group-focus:scale-105"
                       loading={index < 4 ? "eager" : "lazy"}
                       src={event.data.heroImage}
+                      width={700}
                       alt=""
                     />
                   </div>

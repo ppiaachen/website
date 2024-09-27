@@ -16,7 +16,13 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
   <main class="mx-auto min-h-[80vh] max-w-screen-xl">
     <article class="prose prose-stone mx-auto lg:prose-xl">
       <div class="mx-auto w-1/3">
-        <Image loading="eager" class="rounded-lg" src={heroImage} alt="" />
+        <Image
+          loading="eager"
+          class="rounded-lg"
+          src={heroImage}
+          width={700}
+          alt=""
+        />
       </div>
       <div class="mx-auto mt-10 w-3/4">
         <div class="mb-10 text-center uppercase">

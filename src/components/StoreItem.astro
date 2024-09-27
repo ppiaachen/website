@@ -31,7 +31,13 @@ if ("image" in Astro.props) {
   {
     image && (
       <div class="aspect-h-5 aspect-w-4">
-        <Image class="object-cover" src={image} loading="eager" alt={name} />
+        <Image
+          class="object-cover"
+          src={image}
+          width={700}
+          loading="eager"
+          alt={name}
+        />
       </div>
     )
   }
@@ -45,6 +51,7 @@ if ("image" in Astro.props) {
                 <Image
                   class="object-cover"
                   src={img}
+                  width={700}
                   loading="eager"
                   alt={name}
                 />
