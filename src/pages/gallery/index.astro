@@ -1,8 +1,10 @@
 ---
+import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 import Layout from "@/layouts/Layout.astro";
-import { images as galImages } from "@/data/gallery-images";
+
+const galImages = await getCollection("gallery");
 ---
 
 <Layout title="Gallery | PPI Aachen">
@@ -16,13 +18,13 @@ import { images as galImages } from "@/data/gallery-images";
           galImages.map((galItem) => (
             <a
               class="group relative block w-80 overflow-hidden rounded-lg"
-              href={galItem.eventUrl}
+              href={galItem.data.eventUrl}
             >
               <Image
                 class="h-auto w-80 object-cover"
                 loading="lazy"
-                src={galItem.src}
-                alt={galItem.alt}
+                src={galItem.data.image}
+                alt={galItem.data.title}
               />
               <div class="absolute bottom-1 end-1 opacity-0 transition group-hover:opacity-100">
                 <div class="flex items-center gap-x-1 rounded-lg border border-gray-200 bg-white px-2 py-1 text-gray-800">

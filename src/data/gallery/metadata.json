@@ -1,0 +1,32 @@
+[
+  {
+    "pattern": "^halloween*",
+    "title": "Halloween Party KMKI x PPI Aachen",
+    "eventUrl": "/events/2023/halloween-x-kmki"
+  },
+  {
+    "pattern": "^welcoming*",
+    "title": "Pesta Penjamboetan",
+    "eventUrl": "/events/2023/welcoming-party"
+  },
+  {
+    "pattern": "^athan*",
+    "title": "Athan Cup",
+    "eventUrl": "#"
+  },
+  {
+    "pattern": "^hut77*",
+    "title": "Perayaan Kemerdekaan Indonesia ke-77",
+    "eventUrl": "#"
+  },
+  {
+    "pattern": "^iconic2022*",
+    "title": "ICONIC 2022",
+    "eventUrl": "#"
+  },
+  {
+    "pattern": "^sommergrill2022*",
+    "title": "Sommergrillen 2022",
+    "eventUrl": "#"
+  }
+]
