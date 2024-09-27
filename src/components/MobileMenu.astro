@@ -95,13 +95,3 @@ const mobileMenuId = "mobile-menu";
     </ul>
   </div>
 </div>
-
-<script>
-  document.addEventListener("astro:page-load", async () => {
-    const { default: HSOverlay } = await import("preline/dist/overlay");
-    HSOverlay.autoInit();
-
-    const { default: HSCollapse } = await import("preline/dist/collapse");
-    HSCollapse.autoInit();
-  });
-</script>

@@ -16,9 +16,10 @@ declare module "bricks.js" {
     pack: () => BricksInstance;
     update: () => BricksInstance;
     resize: (flag?: boolean) => BricksInstance;
-    on: (event: string, callback: () => void) => BricksInstance;
-    off: (event: string, callback: () => void) => BricksInstance;
-    emit: (event: string, data?: any) => BricksInstance;
+    on: (event: string, handler: () => void) => BricksInstance;
+    once: (event: string, handler: () => void) => BricksInstance;
+    off: (event: string, handler?: () => void) => BricksInstance;
+    emit: (event: string, arguments?: any) => BricksInstance;
   }
 
   function bricks(options: BricksOptions): BricksInstance;

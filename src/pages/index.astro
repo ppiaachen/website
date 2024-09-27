@@ -665,10 +665,3 @@ const accordionTriggerId = (slug: string) => "show-" + accordionId(slug);
     </div>
   </section>
 </Layout>
-
-<script>
-  document.addEventListener("astro:page-load", async () => {
-    const { default: HSAccordion } = await import("preline/dist/accordion");
-    HSAccordion.autoInit();
-  });
-</script>

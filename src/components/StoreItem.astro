@@ -127,10 +127,3 @@ if ("image" in Astro.props) {
     </a>
   </div>
 </div>
-
-<script>
-  document.addEventListener("astro:page-load", async () => {
-    const { default: HSCarousel } = await import("preline/dist/carousel");
-    HSCarousel.autoInit();
-  });
-</script>

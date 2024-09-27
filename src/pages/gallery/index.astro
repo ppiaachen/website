@@ -39,27 +39,3 @@ const galImages = await getCollection("gallery");
     </div>
   </section>
 </Layout>
-
-<script>
-  document.addEventListener("astro:page-load", async () => {
-    const { default: Bricks } = await import("bricks.js");
-
-    const sizes = [
-      { columns: 1, gutter: 5 },
-      { mq: "768px", columns: 2, gutter: 10 },
-      { mq: "1024px", columns: 3, gutter: 25 },
-    ];
-
-    const instance = Bricks({
-      container: "#gallery",
-      packed: "data-packed",
-      sizes: sizes,
-    });
-
-    instance.on("pack", () =>
-      document.getElementById("gallery")?.classList.remove("opacity-0")
-    );
-
-    instance.resize(true).pack();
-  });
-</script>
