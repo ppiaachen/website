@@ -13,4 +13,4 @@ const entry =
 const r = await render(entry);
 ---
 
-{r ? <r.Content /> : null}
+{!!r && <r.Content />}

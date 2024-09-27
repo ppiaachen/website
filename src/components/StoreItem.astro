@@ -29,7 +29,7 @@ if ("image" in Astro.props) {
 
 <div class="flex h-full flex-col border">
   {
-    image && (
+    !!image && (
       <div class="aspect-h-5 aspect-w-4">
         <Image
           class="object-cover"
@@ -42,7 +42,7 @@ if ("image" in Astro.props) {
     )
   }
   {
-    images && (
+    !!images && (
       <div data-hs-carousel='{"loadingClasses": "opacity-0"}' class="relative">
         <div class="hs-carousel aspect-h-5 aspect-w-4 relative overflow-hidden">
           <div class="hs-carousel-body absolute bottom-0 start-0 top-0 flex flex-nowrap opacity-0 transition-transform duration-700">
