@@ -7,37 +7,43 @@ const gallery = defineCollection({
       "src/data/gallery/**/*.{jpeg,jpg}",
     );
 
-    const resolvedImages = (await Promise.all(
-      Object.values(images).map((image) => image().then((mod) => mod.default)),
-    )).sort(() => Math.random() - 0.5);
+    const resolvedImages = (
+      await Promise.all(
+        Object.values(images).map((image) =>
+          image().then((mod) => mod.default),
+        ),
+      )
+    ).sort(() => Math.random() - 0.5);
 
     let galleryInfo = import.meta.glob<{
       default: {
         pattern: string;
         title: string;
         eventUrl: string;
-      }[]
-    }>(
-      "src/data/gallery/metadata.json"
-    );
+      }[];
+    }>("src/data/gallery/metadata.json");
 
-    const resolvedInfo = (await Promise.all(
-      Object.values(galleryInfo).map((info) => info().then((mod) => mod.default)),
-    ))[0]
+    const resolvedInfo = (
+      await Promise.all(
+        Object.values(galleryInfo).map((info) =>
+          info().then((mod) => mod.default),
+        ),
+      )
+    )[0];
 
     return resolvedImages.map((image) => {
       const filename = image.src.split("/").pop() ?? "";
-      const info = resolvedInfo.find(
-        (info) => new RegExp(info.pattern).test(filename)
+      const info = resolvedInfo.find((info) =>
+        new RegExp(info.pattern).test(filename),
       );
-      const imageUrl = 'src/' + image.src.split('?')[0].split('src/').pop();
+      const imageUrl = "src/" + image.src.split("?")[0].split("src/").pop();
 
       return {
         id: imageUrl,
         title: info?.title ?? "",
         eventUrl: info?.eventUrl ?? "",
         image: imageUrl,
-      }
+      };
     });
   },
   schema: ({ image }) =>
