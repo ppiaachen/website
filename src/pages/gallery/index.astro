@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 import Layout from "@/layouts/Layout.astro";
+import "chocolat/dist/css/chocolat.css";
 
 const galImages = await getCollection("gallery");
 ---
@@ -18,7 +19,8 @@ const galImages = await getCollection("gallery");
           galImages.map((galItem) => (
             <a
               class="group relative block w-80 overflow-hidden rounded-lg"
-              href={galItem.data.eventUrl}
+              title={galItem.data.title}
+              href={galItem.data.image.src}
             >
               <Image
                 loading="lazy"
@@ -39,3 +41,32 @@ const galImages = await getCollection("gallery");
     </div>
   </section>
 </Layout>
+
+<script>
+  const { default: Bricks } = await import("bricks.js");
+  const { default: Chocolat } = await import("chocolat");
+
+  document.addEventListener("astro:page-load", async () => {
+    const galleryElement = document.getElementById("gallery");
+
+    if (galleryElement) {
+      const instance = Bricks({
+        container: "#gallery",
+        packed: "data-packed",
+        sizes: [
+          { columns: 1, gutter: 5 },
+          { mq: "768px", columns: 2, gutter: 10 },
+          { mq: "1024px", columns: 3, gutter: 25 },
+        ],
+      });
+
+      instance.on("pack", () => galleryElement.classList.remove("opacity-0"));
+      instance.resize(true).pack();
+
+      const elements = galleryElement.querySelectorAll("a");
+      if (elements.length > 0) {
+        Chocolat(elements, {});
+      }
+    }
+  });
+</script>

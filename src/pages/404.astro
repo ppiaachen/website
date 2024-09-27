@@ -116,3 +116,12 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
     </div>
   </main>
 </BaseLayout>
+
+<script>
+  document.addEventListener("astro:page-load", async () => {
+    const elBack = document.getElementById("navigate-back");
+    if (elBack) {
+      elBack.addEventListener("click", () => history.back());
+    }
+  });
+</script>
