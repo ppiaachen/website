@@ -10,7 +10,7 @@ interface Props {
 const { collectionKey, slug } = Astro.props;
 const entry =
   collectionKey && slug ? await getEntry(collectionKey, slug) : null;
-const r = await render(entry);
+const r = entry && await render(entry);
 ---
 
 {!!r && <r.Content />}
